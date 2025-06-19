@@ -2,7 +2,7 @@
 
 Telegram бот для получения информации о погоде в 10 российских городах с использованием API Open Meteo.
 
-![Обложка](https://github.com/tereshin/test-telegram-backend/refs/heads/main/cover.png)
+![Обложка](https://raw.githubusercontent.com/tereshin/test-telegram-backend/refs/heads/main/cover.png)
 
 ## 🌟 Возможности
 
