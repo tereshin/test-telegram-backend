@@ -1,0 +1,38 @@
+services:
+  telegram-bot:
+    build: .
+    container_name: telegram-weather-bot
+    # Использует PHP 5.6 (см. Dockerfile)
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Монтируем конфигурационный файл
+      - ./config.php:/var/www/html/config.php
+      # Монтируем директорию для логов
+      - ./logs:/var/www/html/logs
+      # Монтируем SSL сертификаты (создайте папку ssl и поместите туда сертификаты)
+      - ./ssl:/etc/ssl/certs/telegram-bot:ro
+    environment:
+      - TZ=Europe/Moscow
+      # Переменные окружения для бота (можно переопределить в .env файле)
+      - BOT_TOKEN=${BOT_TOKEN:-YOUR_BOT_TOKEN_HERE}
+      - WEBHOOK_URL=${WEBHOOK_URL:-https://your-domain.com/bot.php}
+      - PHP_MEMORY_LIMIT=128M
+      - PHP_MAX_EXECUTION_TIME=30
+    networks:
+      - telegram-bot-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost/bot.php || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  telegram-bot-network:
+    driver: bridge
+
+volumes:
+  bot-logs:
+    driver: local 

@@ -1,0 +1,34 @@
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Documentation
+README.md
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.example
+
+# SSL certificates (будут монтироваться как volumes)
+ssl/
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.swp
+*~ 

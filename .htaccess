@@ -1,0 +1,28 @@
+# Настройки для Telegram Weather Bot
+
+# Включаем обработку ошибок
+php_flag display_errors Off
+php_flag log_errors On
+
+# Устанавливаем часовой пояс по умолчанию
+php_value date.timezone "Europe/Moscow"
+
+# Увеличиваем лимиты для обработки запросов
+php_value max_execution_time 30
+php_value memory_limit 128M
+
+# Безопасность: запрещаем прямой доступ к конфигурационным файлам
+<Files "config.php">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+<Files "*.log">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+# Перенаправление на HTTPS (если необходимо)
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301] 
